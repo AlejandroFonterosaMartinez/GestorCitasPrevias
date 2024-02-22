@@ -1,6 +1,7 @@
 <template>
   <div class="flex flex-col h-screen " id="principal">
     <div class="flex flex-wrap flex-auto">
+
       <!-- Calendario -->
       <div class=" w-2/1 pr-4 ">
         <div class="calendar mt-10 ml-10">
@@ -38,8 +39,7 @@
       </div>
 
       <!-- Div citas -->
-      <div id="tablacitas" class="px-3 py-4 mt-24 md:w-1/3 sm:w-full">
-
+      <div id="tablacitas" class="px-3 py-4 mt-24 md:w-1/3 sm:w-full ">
         <h3 class="text-lg font-semibold mb-4 text-white">Citas del día {{ selectedDay }}</h3>
         <div v-if="citasDelDia.length > 0" id="1">
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-6">
@@ -50,6 +50,7 @@
                   <th scope="col" class="p-4">
                     Hecha
                   </th>
+
                   <th class="px-6 py-3">Hora</th>
                   <th class="px-6 py-3">Nombre</th>
                   <th class="px-6 py-3">Tratamiento</th>
@@ -104,9 +105,9 @@
             d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
         </svg>
       </button>
-      <aside id="default-sidebar" :class="{ 'hidden': sidebarHidden }"
+      <aside style="background-color:transparent !important;" id="default-sidebar" :class="{ 'hidden': sidebarHidden }"
         class="fixed top-0 right-0 w-auto transition-transform  ">
-        <div id="sb" class=" px-3 py-4 overflow-y-auto  bg-gray-400 dark:bg-gray-800  ">
+        <div id="sb" class=" px-3 py-4 overflow-y-auto  dark:bg-gray-800  ">
           <h2 class="font-semibold mb-4 text-center text-white text-2xl mt-12">Añadir cita</h2>
           <div class="mb-4">
             <input type="text" placeholder="Nombre" v-model="appointment.name" class="campoFormulario " required>
@@ -154,7 +155,7 @@
       role="alert" v-if="mostrarAlerta">
       <div
         class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
-        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+        <svg class="w-5 h-5" color="white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
           viewBox="0 0 20 20">
           <path
             d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
@@ -485,7 +486,6 @@ export default {
 };
 </script>
 <style scoped>
-
 @keyframes smoothFadeIn {
   0% {
     opacity: 0;
@@ -570,6 +570,8 @@ input:focus {
   font-weight: bold;
   text-align: center;
   margin-bottom: 20px;
+  -webkit-text-stroke-width: .45px;
+  -webkit-text-stroke-color: white;
 }
 
 .days {
@@ -597,7 +599,21 @@ input:focus {
   transition: background-color .4s;
 }
 
+.flecha {
+  background-color: #ffffff !important;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
 .flecha:hover {
+  color: rgb(255, 172, 95);
+  transition: color .2s;
+
+}
+
+#toggleSidebarBtn svg:hover {
   color: rgb(255, 172, 95);
   transition: color .2s;
 

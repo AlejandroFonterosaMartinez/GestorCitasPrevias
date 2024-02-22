@@ -1,6 +1,8 @@
 <template>
+  <div id="app">
   <!-- <Navbar/> -->
   <Inicio/>
+  </div>
 </template>
 
 <script>
@@ -14,4 +16,13 @@ export default {
   }
 }
 </script>
+<style>
+#app {
+  background-image: url('assets/backgroundIMG.jpg');
+  background-size: cover;
+  background-position: center;
+}
 
+
+
+</style>

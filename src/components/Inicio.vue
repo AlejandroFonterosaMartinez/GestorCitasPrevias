@@ -1,8 +1,8 @@
 <template>
-  <div class="flex flex-col ">
+  <div class="flex flex-col h-screen " id="principal">
     <div class="flex flex-wrap flex-auto">
       <!-- Calendario -->
-      <div class=" md:w-2/5 pr-4">
+      <div class=" w-2/1 pr-4 ">
         <div class="calendar mt-10 ml-10">
           <div class="header">
             <button class="flecha" @click="prevMonth">
@@ -38,11 +38,13 @@
       </div>
 
       <!-- Div citas -->
-      <div class="w-auto  md:w-2/5 ml-56 px-3 py-4 overflow-y-auto mt-24">
-        <h3 class="text-lg font-semibold mb-4">Citas del día {{ selectedDay }}</h3>
+      <div id="tablacitas" class="px-3 py-4 mt-24 md:w-1/3 sm:w-full">
+
+        <h3 class="text-lg font-semibold mb-4 text-white">Citas del día {{ selectedDay }}</h3>
         <div v-if="citasDelDia.length > 0" id="1">
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-6">
-            <table v-if="citasDelDia.length > 0" class="w-full text-sm  rtl:text-right text-gray-500 dark:text-gray-400 ">
+            <table v-if="citasDelDia.length > 0"
+              class="w-full text-sm  rtl:text-right text-gray-500 dark:text-gray-400  ">
               <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                   <th scope="col" class="p-4">
@@ -87,8 +89,8 @@
             </table>
           </div>
         </div>
-        <div v-else>
-          <p class="text-red-400">No hay citas para este día.</p>
+        <div v-else class="">
+          <p class="text-red-500 font-semibold">No hay citas para este día.</p>
         </div>
       </div>
 
@@ -103,7 +105,7 @@
         </svg>
       </button>
       <aside id="default-sidebar" :class="{ 'hidden': sidebarHidden }"
-        class="fixed top-0 right-0 w-auto transition-transform ">
+        class="fixed top-0 right-0 w-auto transition-transform  ">
         <div id="sb" class=" px-3 py-4 overflow-y-auto  bg-gray-400 dark:bg-gray-800  ">
           <h2 class="font-semibold mb-4 text-center text-white text-2xl mt-12">Añadir cita</h2>
           <div class="mb-4">
@@ -483,6 +485,7 @@ export default {
 };
 </script>
 <style scoped>
+
 @keyframes smoothFadeIn {
   0% {
     opacity: 0;
@@ -580,7 +583,7 @@ input:focus {
   width: 100px !important;
   height: 100px !important;
   border-radius: 5px;
-  border: 2px solid #000000;
+  border: 1px solid #ffffff;
   text-align: center;
   cursor: pointer;
   display: flex;

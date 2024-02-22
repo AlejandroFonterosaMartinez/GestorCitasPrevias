@@ -23,11 +23,11 @@
             <div v-for="(day, index) in daysInMonth" :key="index" :class="[
               'day flex flex-col items-center justify-between',
               {
-                'bg-red-200': isSunday(day),
+                'bg-red-300': isSunday(day),
                 'bg-green-500': !hasCitasEnDia(day),
                 'bg-orange-400': hasCitasEnDia(day),
-                'bg-pink-400': isCurrentDay(day),
-                'bg-gray-300': isPastDay(day)
+                'bg-pink-500': isCurrentDay(day),
+                'bg-gray-500': isPastDay(day)
               }]" @click="addAppointment(day)">
               <span class="text-sm font-bold mb-1 mt-0 bg-white w-full px-2 py-1 items-start">Citas: {{
                 getCitasPendientes(day) }}</span>
@@ -467,11 +467,6 @@ export default {
       }
     },
     isHoraOcupada(hour) {
-      const currentHour = new Date().getHours();
-      const selectedHour = parseInt(hour.split(':')[0]);
-      if (selectedHour < currentHour) {
-        return true;
-      }
       return this.citasDelDia.some(cita => cita.time === hour);
     },
     prevMonth() {

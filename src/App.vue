@@ -17,11 +17,13 @@ export default {
 }
 </script>
 <style>
-#app {
+body {
   background-image: url('assets/backgroundIMG.jpg');
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat; /* Evitar que el fondo se repita */
 }
+
 
 
 

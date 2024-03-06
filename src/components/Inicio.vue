@@ -27,8 +27,8 @@
                 'bg-red-300': isSunday(day),
                 'bg-green-500': !hasCitasEnDia(day),
                 'bg-orange-400': hasCitasEnDia(day),
-                'bg-pink-500': isCurrentDay(day),
-                'bg-gray-500': isPastDay(day)
+                'bg-pink-400': isCurrentDay(day),
+                'bg-gray-400': isPastDay(day)
               }]" @click="addAppointment(day)">
               <span class="text-sm font-bold mb-1 mt-0 bg-white w-full px-2 py-1 items-start">Citas: {{
                 getCitasPendientes(day) }}</span>
@@ -44,8 +44,8 @@
         <div v-if="citasDelDia.length > 0" id="1">
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-6">
             <table v-if="citasDelDia.length > 0"
-              class="w-full text-sm  rtl:text-right text-gray-500 dark:text-gray-400  ">
-              <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              class="w-full text-sm  rtl:text-right text-white  ">
+              <thead class="text-xs text-white uppercase bg-gray-500">
                 <tr>
                   <th scope="col" class="p-4">
                     Hecha
@@ -58,7 +58,7 @@
                   <th class="px-6 py-3">Acciones</th>
                 </tr>
               </thead>
-              <tbody class="text-center">
+              <tbody class="text-center text-white">
                 <tr v-for="(cita, index) in citasDelDia" :key="index"
                   class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                   <td class="w-4 p-4">
@@ -105,10 +105,10 @@
             d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
         </svg>
       </button>
-      <aside style="background-color:transparent !important;" id="default-sidebar" :class="{ 'hidden': sidebarHidden }"
-        class="fixed top-0 right-0 w-auto transition-transform  ">
-        <div id="sb" class=" px-3 py-4 overflow-y-auto  dark:bg-gray-800  ">
-          <h2 class="font-semibold mb-4 text-center text-white text-2xl mt-12">Añadir cita</h2>
+      <aside  id="default-sidebar" :class="{ 'hidden': sidebarHidden }"
+        class="text-sm md:text-sm fixed top-0 right-0 w-auto transition-transform  ">
+        <div id="sb" class=" px-3 py-4 overflow-y-auto  bg-gray-800  ">
+          <h2 class="font-semibold mb-4 text-center text-white text-2xl mt-6">Añadir cita</h2>
           <div class="mb-4">
             <input type="text" placeholder="Nombre" v-model="appointment.name" class="campoFormulario " required>
           </div>
@@ -141,9 +141,8 @@
             <input type="number" placeholder="Precio" v-model="appointment.price" class="campoFormulario" required>
           </div>
           <button @click="saveAppointment"
-            class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded mr-2 mb-14 text-2xl ml-2 ">Guardar </button>
-          <p class="text-white text-center text-sm">&copy; 2024 Alejandro Fonterosa Martínez. Todos los derechos
-            reservados.</p>
+            class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded mr-2 mb-18 text-2xl ml-2 ">Guardar </button>
+        
 
         </div>
       </aside>
@@ -196,6 +195,10 @@
         </svg>
       </button>
     </div>
+
+    <!-- INFO -->
+    <p class=" mt-10 text-center text-sm text-white">&copy; 2024 Alejandro Fonterosa Martínez. Todos los derechos
+      reservados.</p>
   </div>
 </template>
 <script>
@@ -427,12 +430,16 @@ export default {
         if (formattedSelectedDate < formattedCurrentDate) {
           this.msgError = 'No se pueden programar citas en días anteriores al actual';
           this.mostrarError = true;
+          setTimeout(() =>  this.mostrarError = false, 2000);
+
           return;
         }
 
         if (this.appointment.name == '' || this.appointment.telefono == '' || this.appointment.treatment == '' || this.appointment.date == '' || this.appointment.time == '' || this.appointment.price == '') {
           this.msgError = 'Completa todos los campos';
           this.mostrarError = true;
+          setTimeout(() =>  this.mostrarError = false, 2000);
+
           return;
         }
 
@@ -450,6 +457,7 @@ export default {
         // Resto del código para manejar la respuesta exitosa
         this.msgalerta = "Cita creada correctamente";
         this.mostrarAlerta = true;
+        setTimeout(() =>  this.mostrarAlerta = false, 2000);
 
         this.appointment = {
           name: '',
@@ -486,6 +494,20 @@ export default {
 };
 </script>
 <style scoped>
+@media only screen and (max-width: 768px) {
+  #calendario-container {
+    display: none; /* Ocultar el calendario en dispositivos móviles */
+  }
+  #citas-container {
+    width: 100%; /* Ajustar el ancho al 100% en dispositivos móviles */
+  }
+  #creador-citas-container {
+    position: static; /* Quitar la posición fija en dispositivos móviles */
+    width: 100%; /* Ajustar el ancho al 100% en dispositivos móviles */
+  }
+}
+
+
 @keyframes smoothFadeIn {
   0% {
     opacity: 0;
@@ -544,7 +566,12 @@ select {
   color: #474444;
 }
 
-
+.red{
+  color:Red !important;
+}
+.green{
+  color:green !important;
+}
 
 input:focus {
   outline: none !important;
